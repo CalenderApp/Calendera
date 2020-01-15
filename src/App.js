@@ -5,8 +5,8 @@ function App() {
   return ( <
     div className = "App" >
     <
-    p > I am making a titivate change < /p>  <
-    /div >
+    p > I am making a titivate change to the React App < /p>  < /
+    div >
   );
 }
 
