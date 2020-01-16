@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <button type="button">Does this work?</button>
+      <Navbar/>
     </div>
   );
 }
