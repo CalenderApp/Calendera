@@ -1,52 +1,71 @@
 import React from "react";
-//import { VerticalNavigation, VerticalSection, VerticalItem } from 'react-rainbow-components';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Calender from './Calender';
+import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function Navbar() {
-    return (
-        <div>
-        
-        <Router>
-                <Route path='/' exact component={Calender}/>
-        </Router>
-        </div>
+//component imports
+import Calender from "./Calender";
+import Events from "./Events";
+import Reminders from "./Reminders";
 
-    )
-}
+//styling for SideNav
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
+
+const Navbar = () =>
+ (
+    <Router>
+      <Route
+        render={({ location, history }) => (
+          <React.Fragment>
+            <SideNav
+              onSelect={selected => {
+                const to = "/" + selected;
+                if (location.pathname !== to) {
+                  history.push(to);
+                }
+              }}
+            >
+              <SideNav.Toggle />
+              <SideNav.Nav defaultSelected="calender">
+                <NavItem eventKey="calender">
+                  <NavIcon>
+                    <i
+                      className="fas fa-calendar-week"
+                      style={{ fontSize: "1.75em", color: "black" }}
+                    />
+                  </NavIcon>
+                  <NavText style={{ color: "black" }}>Calender</NavText>
+                </NavItem>
+
+                <NavItem eventKey="reminders">
+                  <NavIcon>
+                    <i
+                      className="fas fa-bell"
+                      style={{ fontSize: "1.75em", color: "black" }}
+                    />
+                  </NavIcon>
+                  <NavText style={{ color: "black" }}>Reminders</NavText>
+                </NavItem>
+
+                <NavItem eventKey="events">
+                  <NavIcon>
+                    <i
+                      className="fas fa-pen-square"
+                      style={{ fontSize: "1.75em", color: "black" }}
+                    />
+                  </NavIcon>
+                  <NavText style={{ color: "black" }}>Events</NavText>
+                </NavItem>
+              </SideNav.Nav>
+            </SideNav>
+            <main>
+              <Route path="/calender" exact component={props => <Calender />} />
+              <Route path="/reminders" component={props => <Reminders />} />
+              <Route path="/events" component={props => <Events />} />
+            </main>
+          </React.Fragment>
+        )}
+      />
+    </Router>
+  );
 
 export default Navbar;
-
-/*
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedItem: 'item 1',
-        };
-        this.handleOnSelect = this.handleOnSelect.bind(this);
-    }
-
-    handleOnSelect(e, selectedItem) {
-        return this.setState({ selectedItem });
-    }
-
-    render() {
-        return (
-            <Router>
-            <VerticalNavigation
-                selectedItem={this.state.selectedItem}
-                onSelect={this.handleOnSelect}
-            >
-                <VerticalSection>
-                    <VerticalItem name="item-1" label="My Calender"><Route path="/" exact component={Calender}/></VerticalItem>
-                    <VerticalItem name="item-2" label="Reminders" href="projects" />
-                    <VerticalItem name="item-3" label="Events" href=""/>
-                </VerticalSection>
-            </VerticalNavigation>
-            </Router>
-        );
-    }
-}
-
-export default Navbar;*/

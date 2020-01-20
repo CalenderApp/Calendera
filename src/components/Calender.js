@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-function Calender() {
-return(
+const Calender = () => 
+   (
     <div>
-        Calender
+      <h1>Calender</h1>
     </div>
-)
-}
+  );
+
 export default Calender;
