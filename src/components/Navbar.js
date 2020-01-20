@@ -1,7 +1,23 @@
 import React from "react";
-import { VerticalNavigation, VerticalSection, VerticalItem } from 'react-rainbow-components';
+//import { VerticalNavigation, VerticalSection, VerticalItem } from 'react-rainbow-components';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Calender from './Calender';
 
+function Navbar() {
+    return (
+        <div>
+        
+        <Router>
+                <Route path='/' exact component={Calender}/>
+        </Router>
+        </div>
 
+    )
+}
+
+export default Navbar;
+
+/*
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -17,20 +33,20 @@ class Navbar extends React.Component {
 
     render() {
         return (
+            <Router>
             <VerticalNavigation
                 selectedItem={this.state.selectedItem}
                 onSelect={this.handleOnSelect}
             >
                 <VerticalSection>
-                    <VerticalItem name="item-1" label="Recent" />
-                    <VerticalItem name="item-2" label="Projects" />
-                    <VerticalItem name="item-3" label="Folders" />
-                    <VerticalItem name="item-4" label="Settings" />
-                    <VerticalItem name="item-5" label="Reports" />
+                    <VerticalItem name="item-1" label="My Calender"><Route path="/" exact component={Calender}/></VerticalItem>
+                    <VerticalItem name="item-2" label="Reminders" href="projects" />
+                    <VerticalItem name="item-3" label="Events" href=""/>
                 </VerticalSection>
             </VerticalNavigation>
+            </Router>
         );
     }
 }
 
-export default Navbar;
+export default Navbar;*/
